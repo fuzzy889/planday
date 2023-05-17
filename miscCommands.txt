@@ -1,0 +1,3 @@
+$join = (Join-Object -Left $employees -Right $punchclock -LeftJoinProperty id -RightJoinProperty employeeId -Type OnlyIfInBoth -Prefix punch_)
+
+($join | Select-Object systemId, punch_endDateTime | Where-Object -Property punch_endDateTime -ne $null) | Export-Csv -Path C:\Test\join.csv -Delimiter ";" -UseQuotes AsNeeded
